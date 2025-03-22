@@ -25,7 +25,7 @@ function Textarea() {
       console.log('selection', selection)
       if (
         selection?.anchorNode &&
-        isCollapsed(selection) &&
+        selection.isCollapsed &&
         selection.anchorNode.nodeType === Node.TEXT_NODE &&
         selection.anchorNode.parentElement?.getAttribute('data-textarea-id') ===
           id
@@ -68,13 +68,6 @@ function Textarea() {
 
 function Cursor() {
   return <span className="cursor">|</span>
-}
-
-function isCollapsed(selection: Selection) {
-  return (
-    selection.anchorNode === selection.focusNode &&
-    selection.anchorOffset === selection.focusOffset
-  )
 }
 
 export default App
