@@ -1,14 +1,6 @@
-# Rsbuild template repository
+# Vanilla textarea
 
-This is a template repository for `rsbuild` with `React` and `TypeScript`. It uses `bun` instead of Node.js and `biome` instead of `prettier / eslint` for better performance.
-
-## Start a new project from this template
-
-1. Copy / Fork / Clone the repository
-2. Change the license in the `LICENSE` file and in the `package.json` file
-3. Update `assetPrefix` in `rsbuild.config.ts` to your repository name
-4. Install the dependencies via `bun install`
-5. Update this `README.md` file
+ 🧪 A custom text input built entirely with HTML and JavaScript — no `<textarea>` or `contenteditable` used. A minimal experiment in manual text handling and DOM control.
 
 ## Setup
 
