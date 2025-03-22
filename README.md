@@ -42,3 +42,7 @@ Update dependencies:
 ```bash
 bun update
 ```
+
+# License To Be Determined
+
+This project does not yet have a final license. Until a license is specified, **no permission is granted to use, modify, or distribute this code**. Check back later for updates.
