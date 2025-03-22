@@ -16,7 +16,7 @@ const App = () => {
 function Textarea() {
   const id = useId()
   const [text, setText] = useState(loroIpsum)
-  const [cursor, setCursor] = useState<number | null>(null)
+  const [caret, setCaret] = useState<number | null>(null)
 
   useEffect(() => {
     function handleSelectionChange() {
@@ -30,11 +30,11 @@ function Textarea() {
         selection.anchorNode.parentElement?.getAttribute('data-textarea-id') ===
           id
       ) {
-        setCursor(selection.anchorOffset)
+        setCaret(selection.anchorOffset)
       } else {
         console.log(selection?.anchorNode?.nodeName)
         if (selection?.anchorNode?.nodeName !== 'P') {
-          setCursor(null)
+          setCaret(null)
         }
       }
     }
@@ -50,18 +50,18 @@ function Textarea() {
     <>
       <h1>Textarea</h1>
       <p data-textarea-id={id}>
-        {cursor != null ? (
+        {caret != null ? (
           <>
-            {text.slice(0, cursor)}
+            {text.slice(0, caret)}
             <Caret />
-            {text.slice(cursor)}
+            {text.slice(caret)}
           </>
         ) : (
           text
         )}
       </p>
       <h2>Internal state</h2>
-      <pre>{JSON.stringify({ text, cursor }, undefined, 2)}</pre>
+      <pre>{JSON.stringify({ text, cursor: caret }, undefined, 2)}</pre>
     </>
   )
 }
