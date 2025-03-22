@@ -53,7 +53,7 @@ function Textarea() {
         {cursor != null ? (
           <>
             {text.slice(0, cursor)}
-            <Cursor />
+            <Caret />
             {text.slice(cursor)}
           </>
         ) : (
@@ -66,8 +66,8 @@ function Textarea() {
   )
 }
 
-function Cursor() {
-  return <span className="cursor">&nbsp;</span>
+function Caret() {
+  return <span className="caret">&nbsp;</span>
 }
 
 export default App

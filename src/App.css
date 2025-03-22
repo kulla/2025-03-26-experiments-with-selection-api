@@ -8,9 +8,10 @@ body {
   }
 }
 
-.cursor {
+.caret {
   display: inline-block;
   width: 1px;
+  content: " ";
   background-color: var(--pico-color);
   animation: blink 1s step-end infinite;
 }
