@@ -3,7 +3,7 @@ import { pluginReact } from '@rsbuild/plugin-react'
 
 export default defineConfig({
   output: {
-    assetPrefix: '/rsbuild-react-bun-biome-starter-template/',
+    assetPrefix: '/2025-03-22-vanilla-textarea/',
   },
   plugins: [pluginReact()],
 })
