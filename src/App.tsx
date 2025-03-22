@@ -67,7 +67,7 @@ function Textarea() {
 }
 
 function Cursor() {
-  return <span className="cursor">|</span>
+  return <span className="cursor">&nbsp;</span>
 }
 
 export default App

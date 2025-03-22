@@ -7,3 +7,20 @@ body {
     padding: 2rem;
   }
 }
+
+.cursor {
+  display: inline-block;
+  width: 1px;
+  background-color: var(--pico-color);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    background-color: transparent;
+  }
+  50% {
+    background-color: var(--pico-color);
+  }
+}
