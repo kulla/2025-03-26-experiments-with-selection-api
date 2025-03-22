@@ -21,6 +21,8 @@ function Textarea() {
   useEffect(() => {
     function handleSelectionChange() {
       const selection = window.getSelection()
+
+      console.log('selection', selection)
       if (
         selection?.anchorNode &&
         isCollapsed(selection) &&
@@ -30,7 +32,10 @@ function Textarea() {
       ) {
         setCursor(selection.anchorOffset)
       } else {
-        setCursor(null)
+        console.log(selection?.anchorNode?.nodeName)
+        if (selection?.anchorNode?.nodeName !== 'P') {
+          setCursor(null)
+        }
       }
     }
 
@@ -44,11 +49,25 @@ function Textarea() {
   return (
     <>
       <h1>Textarea</h1>
-      <p data-textarea-id={id}>{text}</p>
+      <p data-textarea-id={id}>
+        {cursor != null ? (
+          <>
+            {text.slice(0, cursor)}
+            <Cursor />
+            {text.slice(cursor)}
+          </>
+        ) : (
+          text
+        )}
+      </p>
       <h2>Internal state</h2>
       <pre>{JSON.stringify({ text, cursor }, undefined, 2)}</pre>
     </>
   )
+}
+
+function Cursor() {
+  return <span className="cursor">|</span>
 }
 
 function isCollapsed(selection: Selection) {
