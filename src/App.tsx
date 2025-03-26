@@ -79,12 +79,10 @@ function Example1() {
 
 function getTextareaId(node: Node | null) {
   if (node == null) return null
-  if (!(node instanceof Element)) return null
+  if (node instanceof Element && node.getAttribute('data-textarea-id'))
+    return node.getAttribute('data-textarea-id')
 
-  return (
-    node.getAttribute('data-textarea-id') ??
-    node.parentElement?.getAttribute('data-textarea-id')
-  )
+  return node.parentElement?.getAttribute('data-textarea-id')
 }
 
 function getNodeName(node: Node | null) {
