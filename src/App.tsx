@@ -131,7 +131,6 @@ function Example2() {
     <>
       <h2>The text area (id="{id}")</h2>
       <p data-textarea-id={id}>
-        <h2>The text area (id="{id}")</h2>
         {/* Here is the difference to Example 1 */}
         {`${text.slice(0, caret ?? text.length)}<>${text.slice(caret ?? text.length)}`}
       </p>
