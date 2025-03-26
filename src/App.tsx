@@ -17,11 +17,24 @@ function Textarea() {
   const id = useId()
   const [text, _setText] = useState(loroIpsum)
   const [caret, setCaret] = useState<number | null>(null)
+  const [selection, setSelection] = useState<unknown | null>(null)
   const lastCaretChange = useRef<number | null>(null)
 
   useEffect(() => {
     function handleSelectionChange() {
       const selection = window.getSelection()
+
+      if (selection) {
+        setSelection({
+          anchorNode: getNodeName(selection.anchorNode),
+          anchorOffset: selection.anchorOffset,
+          focusNode: getNodeName(selection.focusNode),
+          focusOffset: selection.focusOffset,
+          isCollapsed: selection.isCollapsed,
+        })
+      } else {
+        setSelection(null)
+      }
 
       if (currentTimestamp() - (lastCaretChange.current ?? 0) < 100) {
         return
@@ -64,13 +77,20 @@ function Textarea() {
         )}
       </p>
       <h2>Internal state</h2>
-      <pre>{JSON.stringify({ text, cursor: caret }, undefined, 2)}</pre>
+      <pre>{JSON.stringify({ text, caret, selection }, undefined, 2)}</pre>
     </>
   )
 }
 
 function currentTimestamp() {
   return new Date().getTime()
+}
+
+function getNodeName(node: Node | null) {
+  if (node == null) return null
+  if (!(node instanceof Element)) return node.nodeName
+
+  return `<${node.nodeName.toLowerCase()} data-textarea-id=${node.getAttribute('data-textarea-id')}/>`
 }
 
 function Caret() {
