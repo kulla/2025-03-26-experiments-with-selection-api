@@ -1,6 +1,6 @@
 import '@picocss/pico/css/pico.min.css'
 import './App.css'
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 
 const loroIpsum =
   'Loro ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
@@ -9,6 +9,9 @@ const App = () => {
   return (
     <main className="content">
       <h1>Example 1</h1>
+      <p>
+        This example shows that the selection is reset to the beginning of the{' '}
+      </p>
       <Example1 />
     </main>
   )
@@ -19,7 +22,6 @@ function Example1() {
   const [text, _setText] = useState(loroIpsum)
   const [caret, setCaret] = useState<number | null>(null)
   const [selection, setSelection] = useState<unknown | null>(null)
-  const lastCaretChange = useRef<number | null>(null)
 
   useEffect(() => {
     function handleSelectionChange() {
@@ -37,10 +39,6 @@ function Example1() {
         setSelection(null)
       }
 
-      if (currentTimestamp() - (lastCaretChange.current ?? 0) < 100) {
-        return
-      }
-
       if (
         selection?.anchorNode &&
         selection.isCollapsed &&
@@ -52,8 +50,6 @@ function Example1() {
       } else {
         setCaret(null)
       }
-
-      lastCaretChange.current = currentTimestamp()
     }
 
     document.addEventListener('selectionchange', handleSelectionChange)
@@ -81,10 +77,6 @@ function Example1() {
       <pre>{JSON.stringify({ text, caret, selection }, undefined, 2)}</pre>
     </>
   )
-}
-
-function currentTimestamp() {
-  return new Date().getTime()
 }
 
 function getNodeName(node: Node | null) {
