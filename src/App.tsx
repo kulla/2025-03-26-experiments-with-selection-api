@@ -42,9 +42,7 @@ function Example1() {
       if (
         selection?.anchorNode &&
         selection.isCollapsed &&
-        selection.anchorNode.nodeType === Node.TEXT_NODE &&
-        selection.anchorNode.parentElement?.getAttribute('data-textarea-id') ===
-          id
+        getTextareaId(selection.anchorNode) === id
       ) {
         setCaret(selection.anchorOffset)
       } else {
@@ -76,6 +74,16 @@ function Example1() {
       <h2>Internal state</h2>
       <pre>{JSON.stringify({ text, caret, selection }, undefined, 2)}</pre>
     </>
+  )
+}
+
+function getTextareaId(node: Node | null) {
+  if (node == null) return null
+  if (!(node instanceof Element)) return null
+
+  return (
+    node.getAttribute('data-textarea-id') ??
+    node.parentElement?.getAttribute('data-textarea-id')
   )
 }
 
