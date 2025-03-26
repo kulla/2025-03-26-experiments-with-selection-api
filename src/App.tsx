@@ -15,7 +15,7 @@ const App = () => {
 
 function Textarea() {
   const id = useId()
-  const [text, setText] = useState(loroIpsum)
+  const [text, _setText] = useState(loroIpsum)
   const [caret, setCaret] = useState<number | null>(null)
   const lastCaretChange = useRef<number | null>(null)
 
