@@ -8,12 +8,13 @@ const loroIpsum =
 const App = () => {
   return (
     <main className="content">
-      <Textarea />
+      <h1>Example 1</h1>
+      <Example1 />
     </main>
   )
 }
 
-function Textarea() {
+function Example1() {
   const id = useId()
   const [text, _setText] = useState(loroIpsum)
   const [caret, setCaret] = useState<number | null>(null)
@@ -64,7 +65,7 @@ function Textarea() {
 
   return (
     <>
-      <h1>Textarea</h1>
+      <h2>The text area</h2>
       <p data-textarea-id={id}>
         {caret != null ? (
           <>
