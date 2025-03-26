@@ -10,7 +10,11 @@ const App = () => {
     <main className="content">
       <h1>Example 1</h1>
       <p>
-        This example shows that the selection is reset to the beginning of the{' '}
+        This example shows that the selection is reset to the beginning of the
+        text after clicking at a position of the text area. After the caret
+        cursor is set the text node is replaced with a new one. This results in
+        reseting the selection to the beginning of the parent node which resets
+        the caret to the beginning of the text.
       </p>
       <Example1 />
     </main>
