@@ -17,6 +17,9 @@ const App = () => {
         the caret to the beginning of the text.
       </p>
       <Example1 />
+      <h1>Example 2</h1>
+      <p>All changes to the text seem to reset the selection</p>
+      <Example2 />
     </main>
   )
 }
@@ -74,6 +77,58 @@ function Example1() {
         ) : (
           text
         )}
+      </p>
+      <h2>Internal state</h2>
+      <pre>{JSON.stringify({ text, caret, selection }, undefined, 2)}</pre>
+    </>
+  )
+}
+
+function Example2() {
+  const id = useId()
+  const [text, _setText] = useState(loroIpsum)
+  const [caret, setCaret] = useState<number | null>(null)
+  const [selection, setSelection] = useState<unknown | null>(null)
+
+  useEffect(() => {
+    function handleSelectionChange() {
+      const selection = window.getSelection()
+
+      if (selection) {
+        setSelection({
+          anchorNode: getNodeName(selection.anchorNode),
+          anchorOffset: selection.anchorOffset,
+          focusNode: getNodeName(selection.focusNode),
+          focusOffset: selection.focusOffset,
+          isCollapsed: selection.isCollapsed,
+        })
+      } else {
+        setSelection(null)
+      }
+
+      if (
+        selection?.anchorNode &&
+        selection.isCollapsed &&
+        getTextareaId(selection.anchorNode) === id
+      ) {
+        setCaret(selection.anchorOffset)
+      } else {
+        setCaret(null)
+      }
+    }
+
+    document.addEventListener('selectionchange', handleSelectionChange)
+
+    return () => {
+      document.removeEventListener('selectionchange', handleSelectionChange)
+    }
+  }, [id])
+
+  return (
+    <>
+      <h2>The text area (id="{id}")</h2>
+      <p data-textarea-id={id}>
+        {`${text.slice(0, caret ?? text.length)}<>${text.slice(caret ?? text.length)}`}
       </p>
       <h2>Internal state</h2>
       <pre>{JSON.stringify({ text, caret, selection }, undefined, 2)}</pre>
