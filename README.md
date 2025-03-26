@@ -1,6 +1,6 @@
-# Vanilla textarea
+# Experiments with Selection API
 
- 🧪 A custom text input built entirely with HTML and JavaScript — no `<textarea>` or `contenteditable` used. A minimal experiment in manual text handling and DOM control.
+This project tests in which circumstances the selection of the Selection API is updated due to rerendering in React.
 
 ## Setup
 
