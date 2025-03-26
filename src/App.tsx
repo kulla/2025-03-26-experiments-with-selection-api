@@ -59,7 +59,7 @@ function Example1() {
 
   return (
     <>
-      <h2>The text area</h2>
+      <h2>The text area (id="{id}")</h2>
       <p data-textarea-id={id}>
         {caret != null ? (
           <>
