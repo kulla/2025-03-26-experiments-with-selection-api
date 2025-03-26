@@ -91,7 +91,7 @@ function getNodeName(node: Node | null) {
   if (node == null) return null
   if (!(node instanceof Element)) return node.nodeName
 
-  return `<${node.nodeName.toLowerCase()} data-textarea-id=${node.getAttribute('data-textarea-id')}/>`
+  return `<${node.nodeName.toLowerCase()} data-textarea-id="${node.getAttribute('data-textarea-id')}"/>`
 }
 
 function Caret() {
